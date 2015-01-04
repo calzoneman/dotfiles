@@ -1,0 +1,7 @@
+alias :e="vim"
+alias ls="ls --color"
+alias ll="ls -l"
+alias please="sudo `fc -n -l -1`"
+alias npm="PYTHON=python2 npm"
+alias node-gyp="PYTHON=python2 node-gyp"
+alias ng="PYTHON=python2 node-gyp"
