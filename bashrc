@@ -47,15 +47,23 @@ color_red='\[\e[01;31m\]'
 color_black='\[\e[01;30m\]'
 color_reset='\[\e[00m\]'
 
-if [[ $EUID == 0 ]]; then
-    prompt_char='#'
-    prompt_uname_color="$color_red"
-else
-    prompt_char='»'
-    prompt_uname_color="$color_black"
+if [[ -z "$prompt_color_root" ]]; then
+    prompt_color_root="$color_red"
 fi
 
-export PS1="[\j] $prompt_uname_color\u@\h$color_reset \w$git_prompt\n$color_black$prompt_char$color_reset "
+if [[ -z "$prompt_color_nonroot" ]]; then
+    prompt_color_nonroot="$color_black"
+fi
+
+if [[ $EUID == 0 ]]; then
+    prompt_char='#'
+    prompt_color="$prompt_color_root"
+else
+    prompt_char='»'
+    prompt_color="$prompt_color_nonroot"
+fi
+
+export PS1="[\j] $prompt_color\u@\h$color_reset \w$git_prompt\n$color_black$prompt_char$color_reset "
 
 export EDITOR="vim"
 export HISTCONTROl="ignoreboth"
