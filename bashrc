@@ -3,7 +3,7 @@
 [[ -f /etc/bashrc ]] &&            source /etc/bashrc
 [[ -f ~/.git-completion.bash ]] && source ~/.git-completion.bash
 [[ -f ~/.bash_aliases ]] &&        source ~/.bash_aliases
-[[ -f ~/.localrc ]] &&              source ~/.localrc
+[[ -f ~/.localrc ]] &&             source ~/.localrc
 
 function ssh_shortcut {
     dest=${ssh_shortcuts[$2]}
