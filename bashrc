@@ -19,7 +19,7 @@ function ssh {
 }
 
 function sftp {
-    ssh_shortcut /usr/bin/ssh $@
+    ssh_shortcut /usr/bin/sftp $@
 }
 
 function tvim {
