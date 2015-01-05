@@ -73,11 +73,17 @@ function copy_dir {
 base="$(dirname $(readlink -e $0))"
 
 if [[ $# == 0 ]]; then
-    echo "No target specified.  Try \`$0 bash vim\`"
+    echo "No target specified."
+    echo "Available targets: bash vim tmux"
     exit 1
 fi
 
-for target in $@; do
+targets="$@"
+if [[ "$targets" == "all" ]]; then
+    targets="bash vim tmux"
+fi
+
+for target in $targets; do
     case $target in
         bash)
             copy_file "$base/bashrc" ~/.bashrc
@@ -85,6 +91,8 @@ for target in $@; do
         vim)
             copy_file "$base/vimrc" ~/.vimrc
             copy_dir "$base/vim" ~/.vim;;
+        tmux)
+            copy_file "$base/tmux.conf" ~/.tmux.conf;;
         *)
             echo "Unknown target $target";;
     esac
