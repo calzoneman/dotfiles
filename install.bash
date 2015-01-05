@@ -70,7 +70,7 @@ function copy_dir {
     fi
 }
 
-base="$(dirname $0)"
+base="$(dirname $(readlink -e $0))"
 
 if [[ $# == 0 ]]; then
     echo "No target specified.  Try \`$0 bash vim\`"
