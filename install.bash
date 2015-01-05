@@ -6,7 +6,7 @@ function copy_file {
 
     echo "Copying $(basename $src) to $dest"
 
-    if [[ -f "$dest" ]]; then
+    if [[ -f "$dest" || -h "$dest" ]]; then
         while true; do
             read -p "$dest already exists.  Delete it? [y/N/(b)ackup] " choice
             case $choice in
@@ -41,7 +41,7 @@ function copy_dir {
 
     echo "Copying $(basename $src) to $dest"
 
-    if [[ -d "$dest" ]]; then
+    if [[ -d "$dest" || -h "$dest" ]]; then
         while true; do
             read -p "$dest already exists.  Delete it? [y/N/(b)ackup] " choice
             case $choice in
