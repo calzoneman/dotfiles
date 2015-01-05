@@ -12,7 +12,8 @@ function copy_file {
             case $choice in
                 [bB]*)
                     echo "  > Copying $(basename $dest) to $(basename $dest).backup"
-                    mv "$dest" "$dest.backup";;
+                    mv "$dest" "$dest.backup"
+                    break;;
                 [yY]*)
                     echo "  > Deleting $(basename $dest)"
                     rm "$dest"
@@ -46,7 +47,8 @@ function copy_dir {
             case $choice in
                 [bB]*)
                     echo "  > Copying $(basename $dest) to $(basename $dest).backup"
-                    mv "$dest" "$dest.backup";;
+                    mv "$dest" "$dest.backup"
+                    break;;
                 [yY]*)
                     echo "  > Deleting $(basename $dest)"
                     find "$dest" -delete
