@@ -74,16 +74,11 @@ base="$(dirname $(readlink -e $0))"
 
 if [[ $# == 0 ]]; then
     echo "No target specified."
-    echo "Available targets: bash vim tmux"
+    echo "Available targets: bash vim tmux i3"
     exit 1
 fi
 
-targets="$@"
-if [[ "$targets" == "all" ]]; then
-    targets="bash vim tmux"
-fi
-
-for target in $targets; do
+for target in $@; do
     case $target in
         bash)
             copy_file "$base/bashrc" ~/.bashrc
@@ -93,6 +88,10 @@ for target in $targets; do
             copy_dir "$base/vim" ~/.vim;;
         tmux)
             copy_file "$base/tmux.conf" ~/.tmux.conf;;
+        i3)
+            copy_file "$base/xinitrc" ~/.xinitrc
+            mkdir -p ~/.i3
+            copy_file "$base/i3config" ~/.i3/config;;
         *)
             echo "Unknown target $target";;
     esac
