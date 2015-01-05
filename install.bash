@@ -1,68 +1,89 @@
 #!/bin/bash
 
-cd "$(dirname $0)"
+function copy_file {
+    src="$1"
+    dest="$2"
 
-for file in ~/.vimrc ~/.bashrc ~/.bash_aliases; do
-    if [[ -f "$file" ]]; then
+    echo "Copying $(basename $src) to $dest"
+
+    if [[ -f "$dest" ]]; then
         while true; do
-            read -p "$file already exists.  [a]bort, [d]elete, [m]ove? " choice
+            read -p "$dest already exists.  Delete it? [y/N/(b)ackup] " choice
             case $choice in
-                [aA])
-                    exit 1;;
-                [dD]*)
-                    rm "$file"
-                    echo "Deleted $file"
+                [bB]*)
+                    echo "  > Copying $(basename $dest) to $(basename $dest).backup"
+                    mv "$dest" "$dest.backup";;
+                [yY]*)
+                    echo "  > Deleting $(basename $dest)"
+                    rm "$dest"
                     break;;
-                [mM]*)
-                    mv "$file" "$file.backup"
-                    echo "Moved $file to $file.backup"
-                    break;;
+                [nN]*)
+                    echo "  > File copy aborted"
+                    return 1;;
                 *)
                     echo "Invalid choice '$choice'";;
             esac
         done
     fi
-done
 
-for dir in ~/.vim; do
-    if [[ -d "$dir" ]]; then
+    ln -s "$src" "$dest"
+    if [[ $? == 0 ]]; then
+        echo "✓ $(basename $dest)"
+    else
+        echo "ln returned non-zero exit code"
+    fi
+}
+
+function copy_dir {
+    src="$1"
+    dest="$2"
+
+    echo "Copying $(basename $src) to $dest"
+
+    if [[ -d "$dest" ]]; then
         while true; do
-            read -p "$dir already exists.  [a]bort, [d]elete, [m]ove? " choice
+            read -p "$dest already exists.  Delete it? [y/N/(b)ackup] " choice
             case $choice in
-                [aA])
-                    exit 1;;
-                [dD]*)
-                    find "$dir" -delete
-                    echo "Deleted $dir"
+                [bB]*)
+                    echo "  > Copying $(basename $dest) to $(basename $dest).backup"
+                    mv "$dest" "$dest.backup";;
+                [yY]*)
+                    echo "  > Deleting $(basename $dest)"
+                    find "$dest" -delete
                     break;;
-                [mM]*)
-                    mv "$dir" "$dir.backup"
-                    echo "Moved $dir to $dir.backup"
-                    break;;
+                [nN]*)
+                    echo "  > File copy aborted"
+                    return 1;;
                 *)
                     echo "Invalid choice '$choice'";;
             esac
         done
     fi
+
+    ln -s "$src" "$dest"
+    if [[ $? == 0 ]]; then
+        echo "✓ $(basename $dest)"
+    else
+        echo "ln returned non-zero exit code"
+    fi
+}
+
+base="$(dirname $0)"
+
+if [[ $# == 0 ]]; then
+    echo "No target specified.  Try \`$0 bash vim\`"
+    exit 1
+fi
+
+for target in $@; do
+    case $target in
+        bash)
+            copy_file "$base/bashrc" ~/.bashrc
+            copy_file "$base/bash_aliases" ~/.bash_aliases;;
+        vim)
+            copy_file "$base/vimrc" ~/.vimrc
+            copy_dir "$base/vim" ~/.vim;;
+        *)
+            echo "Unknown target $target";;
+    esac
 done
-
-base=`pwd`
-ln -s "$base/bashrc" ~/.bashrc
-echo "✓ Copied .bashrc"
-ln -s "$base/bash_aliases" ~/.bash_aliases
-echo "✓ Copied .bash_aliases"
-ln -s "$base/vimrc" ~/.vimrc
-echo "✓ Copied .vimrc"
-ln -s "$base/vim" ~/.vim
-echo "✓ Copied .vim/"
-
-source ~/.bashrc
-read -p "Edit ~/.localrc now? [y/N] " choice
-case $choice in
-    [yY]*)
-        $EDITOR ~/.localrc;;
-    *)
-        ;;
-esac
-
-echo "Basic setup complete"
