@@ -101,3 +101,5 @@ exec --no-startup-id .screenlayout/dual.sh
 exec --no-startup-id compton -b
 exec --no-startup-id xset r rate 300 35
 exec --no-startup-id redshift
+
+for_window[class="feh"] floating enable
