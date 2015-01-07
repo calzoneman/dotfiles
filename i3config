@@ -92,13 +92,13 @@ bindsym $mod+Down exec "amixer set Master 5%-"
 bindsym Print exec "scrot -e 'mv $f /home/calvin/pictures/scrot/'"
 bindsym Shift+Print exec "bash -c \"sleep 1; scrot -s -e 'mv $f /home/calvin/pictures/scrot/'\""
 bindsym Ctrl+Print exec "/home/calvin/bin/notagain-scrot"
-bindsym $mod+i exec "i3lock -i /home/calvin/pictures/lock-dual.png -t"
-bindsym $mod+Shift+i exec "i3lock -i /home/calvin/pictures/lock-dual.png && systemctl suspend"
+bindsym $mod+i exec "i3lock -i /home/calvin/pictures/lock.png -t"
+bindsym $mod+Shift+i exec "i3lock -i /home/calvin/pictures/lock.png && systemctl suspend"
 bindsym Ctrl+$mod+f exec "firefox-nightly"
 bindsym Ctrl+$mod+k exec "keepassx"
 bindsym Ctrl+$mod+t exec "thunderbird"
 
-exec --no-startup-id .screenlayout/dual.sh
+exec --no-startup-id .screenlayout/preferred
 exec --no-startup-id compton -b
 exec --no-startup-id xset r rate 300 35
 exec --no-startup-id redshift
