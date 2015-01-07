@@ -96,6 +96,7 @@ bindsym $mod+i exec "i3lock -i /home/calvin/pictures/lock-dual.png -t"
 bindsym $mod+Shift+i exec "i3lock -i /home/calvin/pictures/lock-dual.png && systemctl suspend"
 bindsym Ctrl+$mod+f exec "firefox-nightly"
 bindsym Ctrl+$mod+k exec "keepassx"
+bindsym Ctrl+$mod+t exec "thunderbird"
 
 exec --no-startup-id .screenlayout/dual.sh
 exec --no-startup-id compton -b
