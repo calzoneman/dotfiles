@@ -67,5 +67,5 @@ prompt_window_title='\[\e]0;\u@\h:\w\a\]'
 export PS1="$prompt_window_title[\j] $prompt_color\u@\h$color_reset \w$git_prompt\n$color_black$prompt_char$color_reset "
 
 export EDITOR="vim"
-export HISTCONTROl="ignoreboth"
+export HISTCONTROL="ignoreboth"
 export PATH=$PATH:~/bin
