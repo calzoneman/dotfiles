@@ -13,3 +13,6 @@
 [submodule "vim/bundle/vim-javascript"]
 	path = vim/bundle/vim-javascript
 	url = https://github.com/pangloss/vim-javascript
+[submodule "vim/bundle/fsharp-vim"]
+	path = vim/bundle/fsharp-vim
+	url = https://github.com/kongo2002/fsharp-vim
