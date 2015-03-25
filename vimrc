@@ -55,6 +55,10 @@ autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
 autocmd BufReadPost *.rkt,*.rktl set filetype=scheme
 autocmd FileType jade setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
+" Recognize *.md as Markdown
+autocmd BufReadPost *.md set filetype=markdown
+" Auto hardwrap Markdown at 80 chars
+autocmd FileType markdown setlocal textwidth=80
 
 " call a function and restore the cursor state afterwards
 function! Preserve(command)
