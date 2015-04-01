@@ -6,8 +6,14 @@
 [[ -f ~/.localrc ]] &&             source ~/.localrc
 
 function ssh_shortcut {
+    if [[ ${#ssh_shortcuts[@]} -lt 1 ]]; then
+        # No shortcuts defined in ~/.localrc
+        $@
+    fi
+
     dest=${ssh_shortcuts[$2]}
     if [[ ! -z "$dest" ]]; then
+        # No shortcut exists for this host
         $1 "$dest"
     else
         $@
