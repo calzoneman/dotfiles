@@ -9,6 +9,7 @@ function ssh_shortcut {
     if [[ ${#ssh_shortcuts[@]} -lt 1 ]]; then
         # No shortcuts defined in ~/.localrc
         $@
+        return $?
     fi
 
     dest=${ssh_shortcuts[$2]}
