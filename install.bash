@@ -92,6 +92,9 @@ for target in $@; do
             copy_file "$base/xinitrc" ~/.xinitrc
             mkdir -p ~/.i3
             copy_file "$base/i3config" ~/.i3/config;;
+        mpv)
+            mkdir -p ~/.config/mpv
+            copy_file "$base/mpv/mpv.conf" ~/.config/mpv/mpv.conf;;
         *)
             echo "Unknown target $target";;
     esac
