@@ -5,32 +5,8 @@
 [[ -f ~/.bash_aliases ]] &&        source ~/.bash_aliases
 [[ -f ~/.localrc ]] &&             source ~/.localrc
 
-function ssh_shortcut {
-    if [[ ${#ssh_shortcuts[@]} -lt 1 ]]; then
-        # No shortcuts defined in ~/.localrc
-        $@
-        return $?
-    fi
-
-    dest=${ssh_shortcuts[$2]}
-    if [[ ! -z "$dest" ]]; then
-        # No shortcut exists for this host
-        $1 "$dest"
-    else
-        $@
-    fi
-}
-
-function ssh {
-    ssh_shortcut /usr/bin/ssh $@
-}
-
-function sftp {
-    ssh_shortcut /usr/bin/sftp $@
-}
-
 function tvim {
-    roxterm -e vim $@ >/dev/null 2>&1 &
+    konsole -e vim $@ >/dev/null 2>&1 &
 }
 
 function open {
@@ -76,3 +52,4 @@ export PS1="$prompt_window_title[\j] $prompt_color\u@\h$color_reset \w$git_promp
 export EDITOR="vim"
 export HISTCONTROL="ignoreboth"
 export PATH=$PATH:~/bin
+[[ -z "$GOPATH" ]] && export GOPATH=$HOME/go

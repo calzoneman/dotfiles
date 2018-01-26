@@ -53,7 +53,7 @@ autocmd FileType vim setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
 autocmd BufReadPost *.rkt,*.rktl set filetype=scheme
-autocmd FileType jade setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType pug setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
 " Recognize *.md as Markdown
 autocmd BufReadPost *.md set filetype=markdown
@@ -77,3 +77,7 @@ nmap <Leader>l :call Preserve("%s/\\s\\+$//e")<CR>
 nmap <Leader>n :noh<CR>
 " \p => toggle paste mode (and toggle line numbers for easier copying from terminals)
 nmap <Leader>p :set nu!<CR>:set paste!<CR>
+" \b => :GoBuild
+autocmd FileType go nmap <Leader>b :GoBuild<CR>
+" \t => :GoTest
+autocmd FileType go nmap <Leader>t :GoTest<CR>
