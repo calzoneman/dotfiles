@@ -1,6 +1,8 @@
 #!/bin/bash
 
-function copy_file {
+set -e
+
+copy_file() {
     src="$1"
     dest="$2"
 
@@ -27,15 +29,13 @@ function copy_file {
         done
     fi
 
-    ln -s "$src" "$dest"
+    cp "$src" "$dest"
     if [[ $? == 0 ]]; then
         echo "✓ $(basename $dest)"
-    else
-        echo "ln returned non-zero exit code"
     fi
 }
 
-function copy_dir {
+copy_dir() {
     src="$1"
     dest="$2"
 
@@ -62,11 +62,9 @@ function copy_dir {
         done
     fi
 
-    ln -s "$src" "$dest"
+    cp -r "$src" "$dest"
     if [[ $? == 0 ]]; then
         echo "✓ $(basename $dest)"
-    else
-        echo "ln returned non-zero exit code"
     fi
 }
 
@@ -74,7 +72,7 @@ base="$(dirname $(readlink -e $0))"
 
 if [[ $# == 0 ]]; then
     echo "No target specified."
-    echo "Available targets: bash vim tmux i3"
+    echo "Available targets: bash fontconfig mpv tmux vim X"
     exit 1
 fi
 
@@ -83,18 +81,20 @@ for target in $@; do
         bash)
             copy_file "$base/bashrc" ~/.bashrc
             copy_file "$base/bash_aliases" ~/.bash_aliases;;
-        vim)
-            copy_file "$base/vimrc" ~/.vimrc
-            copy_dir "$base/vim" ~/.vim;;
-        tmux)
-            copy_file "$base/tmux.conf" ~/.tmux.conf;;
-        i3)
-            copy_file "$base/xinitrc" ~/.xinitrc
-            mkdir -p ~/.i3
-            copy_file "$base/i3config" ~/.i3/config;;
+        fontconfig)
+            mkdir -p ~/.config/fontconfig
+            copy_dir "$base/fontconfig" ~/.config/fontconfig;;
         mpv)
             mkdir -p ~/.config/mpv
             copy_file "$base/mpv/mpv.conf" ~/.config/mpv/mpv.conf;;
+        tmux)
+            copy_file "$base/tmux.conf" ~/.tmux.conf;;
+        vim)
+            copy_file "$base/vimrc" ~/.vimrc
+            copy_dir "$base/vim" ~/.vim;;
+        X)
+            copy_file "$base/Xmodmap" ~/.Xmodmap
+            copy_file "$base/Xresources" ~/.Xresources;;
         *)
             echo "Unknown target $target";;
     esac

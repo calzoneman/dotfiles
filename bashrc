@@ -1,26 +1,42 @@
 #!/bin/bash
 
-[[ -f /etc/bashrc ]] &&            source /etc/bashrc
-[[ -f ~/.git-completion.bash ]] && source ~/.git-completion.bash
-[[ -f ~/.bash_aliases ]] &&        source ~/.bash_aliases
-[[ -f ~/.localrc ]] &&             source ~/.localrc
+# early exit if non-interactive shell (e.g. scp)
+if [[ $- != *i* ]]; then
+    return
+fi
 
-function tvim {
-    konsole -e vim $@ >/dev/null 2>&1 &
-}
+defaults=(\
+    /etc/bashrc \
+    ~/.bash_aliases \
+    ~/.localrc \
+)
 
-function open {
-    xdg-open "$1" >/dev/null 2>&1
-}
+for file in ${defaults[@]}; do
+    [[ -f $file ]] && source $file
+done
 
+###
+# Bash settings
+###
+
+# Refresh terminal size on window resize
 shopt -s checkwinsize
+# Append to history file instead of overwriting
 shopt -s histappend
+# Ignore duplicate commands in history
+export HISTCONTROL="ignoreboth"
+export EDITOR="vim"
 
-export GIT_PS1_SHOWDIRTYSTATE=1
-export GIT_PS1_SHOWSTASHSTATE=1
-export GIT_PS1_SHOWUPSTREAM="verbose"
+###
+# Prompt customization
+###
 
-if hash __git_ps1 2>/dev/null; then
+if test -f /usr/share/git/git-prompt.sh; then
+    source /usr/share/git/git-prompt.sh
+
+    export GIT_PS1_SHOWDIRTYSTATE=1
+    export GIT_PS1_SHOWSTASHSTATE=1
+    export GIT_PS1_SHOWUPSTREAM="verbose"
     git_prompt='$(__git_ps1 " (%s)")'
 else
     git_prompt=''
@@ -35,6 +51,7 @@ if [[ -z "$prompt_color_root" ]]; then
 fi
 
 if [[ -z "$prompt_color_nonroot" ]]; then
+    # TODO: look into choosing a color by hostname
     prompt_color_nonroot="$color_black"
 fi
 
@@ -42,14 +59,16 @@ if [[ $EUID == 0 ]]; then
     prompt_char='#'
     prompt_color="$prompt_color_root"
 else
-    prompt_char='»'
+    prompt_char='$'
     prompt_color="$prompt_color_nonroot"
 fi
 
+prompt_date='$(date +"%H:%M:%S")'
 prompt_window_title='\[\e]0;\u@\h:\w\a\]'
-export PS1="$prompt_window_title[\j] $prompt_color\u@\h$color_reset \w$git_prompt\n$color_black$prompt_char$color_reset "
+export PS1="$prompt_window_title[$prompt_date] $prompt_color\u@\h$color_reset \w$git_prompt\n$color_black$prompt_char$color_reset "
 
-export EDITOR="vim"
-export HISTCONTROL="ignoreboth"
+###
+# PATH customizations
+###
 export PATH=$PATH:~/bin
 [[ -z "$GOPATH" ]] && export GOPATH=$HOME/go
