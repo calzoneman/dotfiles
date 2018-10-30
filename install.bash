@@ -72,7 +72,7 @@ base="$(dirname $(readlink -e $0))"
 
 if [[ $# == 0 ]]; then
     echo "No target specified."
-    echo "Available targets: bash fontconfig mpv tmux vim X"
+    echo "Available targets: bash fontconfig konsole mpv tmux vim X"
     exit 1
 fi
 
@@ -84,6 +84,9 @@ for target in $@; do
         fontconfig)
             mkdir -p ~/.config/fontconfig
             copy_dir "$base/fontconfig" ~/.config/fontconfig;;
+        konsole)
+            mkdir -p ~/.config/
+            copy_file "$base/konsolerc" ~/.config/konsolerc;;
         mpv)
             mkdir -p ~/.config/mpv
             copy_file "$base/mpv/mpv.conf" ~/.config/mpv/mpv.conf;;

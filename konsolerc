@@ -1,0 +1,5 @@
+[General]
+BrowserApplication=firefox
+
+[KonsoleWindow]
+ShowMenuBarByDefault=false
