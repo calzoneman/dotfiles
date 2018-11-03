@@ -65,7 +65,7 @@ fi
 
 prompt_date='$(date +"%H:%M:%S")'
 prompt_window_title='\[\e]0;\u@\h:\w\a\]'
-export PS1="$prompt_window_title[$prompt_date] $prompt_color\u@\h$color_reset \w$git_prompt\n$color_black$prompt_char$color_reset "
+export PS1="$prompt_window_title[$prompt_date] $prompt_color\u@\h$color_reset \w$git_prompt\n$prompt_color$prompt_char$color_reset "
 
 ###
 # PATH customizations
