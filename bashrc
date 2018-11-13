@@ -72,3 +72,8 @@ export PS1="$prompt_window_title[$prompt_date] $prompt_color\u@\h$color_reset \w
 ###
 export PATH=$PATH:~/bin
 [[ -z "$GOPATH" ]] && export GOPATH=$HOME/go
+
+###
+# Make Java font rendering not suck
+###
+export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"

@@ -5,6 +5,8 @@ execute pathogen#infect()
 set encoding=utf-8
 " always show statusline
 set laststatus=2
+" always allow backspace
+set backspace=2
 
 set nu
 set ts=4 sts=4 sw=4 autoindent expandtab smartindent
