@@ -1,0 +1,55 @@
+env:
+  TERM: xterm-256color
+
+window:
+  dynamic_padding: true
+  padding:
+    x: 0
+    y: 0
+
+font:
+  normal:
+    family: 'xos4 Terminus'
+  size: 9
+
+draw_bold_text_with_bright_colors: true
+
+# EGA/VGA colors
+colors:
+  primary:
+    background: '0x000000'
+    foreground: '0xaaaaaa'
+  normal:
+    black:   '0x000000'
+    red:     '0xaa0000'
+    green:   '0x00aa00'
+    yellow:  '0xaa5500'
+    blue:    '0x0000aa'
+    magenta: '0xaa00aa'
+    cyan:    '0x00aaaa'
+    white:   '0xaaaaaa'
+  bright:
+    black:   '0x555555'
+    red:     '0xff5555'
+    green:   '0x55ff55'
+    yellow:  '0xffff55'
+    blue:    '0x5555ff'
+    magenta: '0xff55ff'
+    cyan:    '0x55ffff'
+    white:   '0xffffff'
+
+mouse_bindings:
+  - { mouse: Middle, action: PasteSelection }
+
+mouse:
+  url:
+    launcher:
+      program: firefox
+    modifiers: None
+
+selection:
+  save_to_clipboard: true
+
+live_config_reload: true
+
+alt_send_esc: true

@@ -78,6 +78,9 @@ fi
 
 for target in $@; do
     case $target in
+        alacritty)
+            mkdir -p ~/.config/alacritty
+            copy_file "$base/config/alacritty/alacritty.yml" ~/.config/alacritty/alacritty.yml
         bash)
             copy_file "$base/bashrc" ~/.bashrc
             copy_file "$base/bash_aliases" ~/.bash_aliases;;
