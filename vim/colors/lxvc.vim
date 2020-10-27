@@ -156,7 +156,8 @@ hi LineNr           guifg=#818698       guibg=#363946
 hi LineNr           ctermfg=darkgrey    ctermbg=NONE        cterm=NONE
 
 hi MatchParen       guifg=#000000       guibg=#777777       gui=bold
-hi MatchParen       ctermfg=black       ctermbg=grey        cterm=NONE
+hi MatchParen       ctermfg=yellow       ctermbg=black        cterm=NONE
+"hi MatchParen       ctermfg=black       ctermbg=grey        cterm=NONE
 
 hi ModeMsg          guifg=#a5a9af       guibg=NONE          gui=NONE
 hi ModeMsg          ctermfg=247         ctermbg=NONE        cterm=NONE
