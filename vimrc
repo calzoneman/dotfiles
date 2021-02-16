@@ -26,8 +26,8 @@ else
   set guifont=-xos4-terminus-medium-r-normal--0-0-72-72-c-0-iso10646-1
 endif
 
-set background=light
-colorscheme intellij
+set background=dark
+colorscheme gruvbox
 
 " don't exit visual mode when shifting left/right
 vnoremap < <gv
