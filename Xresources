@@ -1,1 +1,61 @@
 Xcursor.size: 16
+Xcursor.theme: Adwaita
+
+! Disable Alt+Enter fullscreen hotkey
+XTerm.fullscreen: never
+XTerm.termName: xterm-256color
+XTerm.vt100.locale: false
+XTerm.vt100.utf8: true
+XTerm.vt100.metaSendsEscape: true
+XTerm.vt100.saveLines: 8192
+XTerm.vt100.visualBell: false
+XTerm.vt100.bellIsUrgent: true
+XTerm.vt100.scrollTtyOutput: false
+XTerm.vt100.scrollKey: true
+! Enable alternate scroll for mouse scrolling in less/vim/etc.
+XTerm.vt100.alternateScroll: true
+! Add URL characters to word selection:
+!                      !     #     %&       +     -./      :     =     ?     @     ~
+XTerm.vt100.charClass: 33:48,35:48,37-38:48,43:48,45-47:48,58:48,61:48,63:48,64:48,126:48
+XTerm.vt100.Translations: #override \n\
+    Ctrl Shift <Key>c: copy-selection(CLIPBOARD) \n\
+    Ctrl Shift <Key>v: insert-selection(CLIPBOARD) \n\
+    Shift <Btn1Up>: exec-selectable("xdg-open '%t'", word) select-start() select-end()
+! While Terminus is a bitmap font, setting antialias=true lets the proper
+! TTFs be used for unicode, wide characters, etc.
+XTerm.vt100.faceName: Terminus:antialias=true
+! Font menu: default
+XTerm.vt100.faceSize: 9
+! Font menu: unreadable
+XTerm.vt100.faceSize1: 9
+! Font menu: tiny
+XTerm.vt100.faceSize2: 9
+! Font menu: small
+XTerm.vt100.faceSize3: 11
+! Font menu: medium
+XTerm.vt100.faceSize4: 13
+! Font menu: large
+XTerm.vt100.faceSize5: 15
+! Font menu: huge
+XTerm.vt100.faceSize6: 17
+! Font menu: enormous
+XTerm.vt100.faceSize7: 19
+! Custom color palette
+XTerm.vt100.foreground: rgb:aa/aa/aa
+XTerm.vt100.background: black
+XTerm.vt100.color0: rgb:00/00/00
+XTerm.vt100.color1: rgb:aa/00/00
+XTerm.vt100.color2: rgb:55/aa/00
+XTerm.vt100.color3: rgb:aa/55/00
+XTerm.vt100.color4: rgb:00/55/aa
+XTerm.vt100.color5: rgb:8e/00/aa
+XTerm.vt100.color6: rgb:00/aa/55
+XTerm.vt100.color7: rgb:aa/aa/aa
+XTerm.vt100.color8:  rgb:55/55/55
+XTerm.vt100.color9:  rgb:ff/55/55
+XTerm.vt100.color10: rgb:aa/ff/55
+XTerm.vt100.color11: rgb:ff/aa/55
+XTerm.vt100.color12: rgb:55/aa/ff
+XTerm.vt100.color13: rgb:aa/55/ff
+XTerm.vt100.color14: rgb:55/ff/aa
+XTerm.vt100.color15: rgb:ff/ff/ff
